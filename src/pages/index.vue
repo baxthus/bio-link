@@ -39,7 +39,7 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
 <template>
     <div class="flex flex-col items-center bg-mantle rounded-lg p-6 gap-4">
         <div class="relative">
-            <img src="https://abysmal.eu.org/avatar.png" alt="Avatar" class="rounded-full size-32 hover:opacity-70">
+            <img src="/avatar.jpg" alt="Avatar" class="rounded-full size-32 hover:opacity-70">
             <div
                 class="absolute bottom-0 right-0 text-white text-xs font-bold rounded-full px-2 py-1 border-4 border-mantle"
                 :class="{

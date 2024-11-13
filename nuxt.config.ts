@@ -5,6 +5,11 @@ export default defineNuxtConfig({
     app: {
         head: {
             title: 'baxthus',
+            link: [{
+                rel: 'icon',
+                type: 'image/jpeg',
+                href: '/favicon.jpg',
+            }],
         },
     },
     css: ['~/assets/css/main.css'],
