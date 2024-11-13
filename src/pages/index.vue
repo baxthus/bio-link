@@ -46,14 +46,14 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
                     'bg-green-500': data?.discord_status === 'online',
                     'bg-yellow-500': data?.discord_status === 'idle',
                     'bg-red-500': data?.discord_status === 'dnd',
-                    'bg-gray-500': !data?.discord_status,
+                    'bg-gray-500': !data?.discord_status || data?.discord_status === 'offline',
                 }"
             >
                 {{ data?.discord_status ?? 'offline' }}
             </div>
         </div>
-        <a :href="locationUrl" target="_blank" rel="noopener noreferrer nofollow" class="flex flex-row gap-x-1 items-center bg-surface0 text-sm rounded-full py-2 px-3 hover:bg-crust transition-colors">
-            <IconMapPin /> {{ location }}
+        <a :href="locationUrl" target="_blank" rel="noopener noreferrer nofollow" class="flex flex-row gap-x-1 items-center bg-surface0 text-sm rounded-full py-1 px-2 hover:bg-crust transition-colors">
+            <IconMapPin class="w-5 h-auto" /> {{ location }}
         </a>
         <h1 class="font-bold text-3xl">
             バクサス
