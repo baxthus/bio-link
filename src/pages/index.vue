@@ -32,32 +32,32 @@ function copyToClipboard(text: string) {
 }
 const openLink = (link: string) => window.open(link, '_blank')?.focus();
 
-const location = ref('São Paulo, Brazil');
+const location = computed(() => data.value?.kv?.location ?? 'Earth');
 const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?api=1&query=${location.value}`).href);
 </script>
 
 <template>
-    <div class="flex flex-col items-center bg-mantle rounded-lg p-6 gap-4">
+    <div class="flex flex-col items-center bg-mantle rounded-lg p-6 gap-4 max-w-full">
         <div class="relative">
-            <img src="/avatar.jpg" alt="Avatar" class="rounded-full size-32 hover:opacity-70">
+            <img src="/avatar.jpg" alt="Avatar" class="rounded-full size-32">
             <div
+                v-if="data?.discord_status && data?.discord_status !== 'offline'"
                 class="absolute bottom-0 right-0 text-white text-xs font-bold rounded-full px-2 py-1 border-4 border-mantle"
                 :class="{
                     'bg-green-500': data?.discord_status === 'online',
                     'bg-yellow-500': data?.discord_status === 'idle',
                     'bg-red-500': data?.discord_status === 'dnd',
-                    'bg-gray-500': !data?.discord_status || data?.discord_status === 'offline',
                 }"
             >
                 {{ data?.discord_status ?? 'offline' }}
             </div>
         </div>
-        <a :href="locationUrl" target="_blank" rel="noopener noreferrer nofollow" class="flex flex-row gap-x-1 items-center bg-surface0 text-sm rounded-full py-1 px-2 hover:bg-crust transition-colors">
-            <IconMapPin class="w-5 h-auto" /> {{ location }}
-        </a>
         <h1 class="font-bold text-3xl">
             バクサス
         </h1>
+        <a :href="locationUrl" target="_blank" rel="noopener noreferrer nofollow" class="flex flex-row gap-x-1 items-center bg-surface0 text-sm rounded-full py-1 px-2 hover:bg-crust transition-colors">
+            <IconMapPin class="w-5 h-auto" /> {{ location }}
+        </a>
         <div class="w-full ring-0 block">
             <p class="break-words whitespace-pre-line text-center">
                 {{ description.trim() }}
@@ -75,5 +75,6 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
             </button>
         </div>
         <Spotify v-if="data?.spotify" :data />
+        <Activities :data />
     </div>
 </template>

@@ -3,8 +3,6 @@ import type { LanyardData } from '~/types/lanyard';
 
 const { data } = defineProps(['data']) as { data: LanyardData };
 
-console.log(data.spotify?.timestamps.start);
-
 const now = ref(new Date().getTime());
 
 setInterval(() => {
@@ -23,13 +21,14 @@ function getProgress() {
 </script>
 
 <template>
-    <div class="flex flex-col gap-y-4 bg-base p-4 rounded-lg min-w-full">
-        <span class="text-sm text-subtext1 font-medium">Listening to Spotify</span>
+    <Box>
+        <template #title>
+            Listening to Spotify
+        </template>
         <div class="flex flex-row gap-x-4">
-            <div class="has-tooltip relative">
-                <span class="tooltip bg-crust">{{ data.spotify?.album }}</span>
+            <Tooltip :text="data.spotify?.album">
                 <img :src="data?.spotify?.album_art_url" alt="Album Art" class="rounded-lg h-24 w-24">
-            </div>
+            </Tooltip>
             <div class="flex flex-col items-start justify-center gap-2 min-w-0">
                 <a
                     :href="'https://open.spotify.com/track/' + data?.spotify?.track_id"
@@ -39,7 +38,7 @@ function getProgress() {
                 >
                     {{ data?.spotify?.song }}
                 </a>
-                <p class="text truncate w-full text-subtext1">
+                <p class="truncate w-full text-subtext1">
                     {{ data?.spotify?.artist }}
                 </p>
             </div>
@@ -52,15 +51,5 @@ function getProgress() {
                 />
             </div>
         </div>
-    </div>
+    </Box>
 </template>
-
-<style lang="postcss">
-.tooltip {
-    @apply py-1 px-2 shadow-lg rounded invisible absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 whitespace-nowrap overflow-hidden text-ellipsis;
-}
-
-.has-tooltip:hover .tooltip {
-    @apply visible;
-}
-</style>
