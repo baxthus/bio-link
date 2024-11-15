@@ -30,7 +30,6 @@ function copyToClipboard(text: string) {
     navigator.clipboard.writeText(text);
     alert('Copied to clipboard :)');
 }
-const openLink = (link: string) => window.open(link, '_blank')?.focus();
 
 const location = computed(() => data.value?.kv?.location ?? 'Earth');
 const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?api=1&query=${location.value}`).href);
@@ -64,15 +63,19 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
             </p>
         </div>
         <div class="flex flex-row flex-wrap items-center justify-center">
-            <button
+            <component
+                :is="link.copy ? 'button' : 'a'"
                 v-for="link in links"
                 :key="link.title"
+                :href="link.copy ? undefined : link.content"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
                 :title="link.title"
-                class="p-1.5 border-white border-opacity-10 bg-opacity-10 cursor-pointer flex items-center justify-center transition-all rounded-full"
-                @click="link.copy ? copyToClipboard(link.content) : openLink(link.content)"
+                class="p-1.5 border-white border-opacity-10 bg-opacity-10 cursor-pointer flex items-center justify-center transition-colors rounded-full hover:bg-surface0"
+                @click="link.copy ? copyToClipboard(link.content) : undefined"
             >
                 <component :is="link.icon" class="w-8 h-auto" />
-            </button>
+            </component>
         </div>
         <Spotify v-if="data?.spotify" :data />
         <Activities :data />
