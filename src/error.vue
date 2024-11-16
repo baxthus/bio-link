@@ -9,7 +9,6 @@ onMounted(() => {
     function konamiEventListener(event: KeyboardEvent) {
         if (event.key === KONAMI_CODE[currentPosition++]) {
             if (currentPosition === KONAMI_CODE.length) {
-                console.log('Konami code activated!');
                 navigateTo('https://www.youtube.com/watch?v=HiBxdACoXYY', { external: true });
                 currentPosition = 0;
             }
