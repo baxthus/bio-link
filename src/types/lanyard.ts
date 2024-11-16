@@ -1,7 +1,7 @@
 export interface LanyardOptions {
     userId: string | string[];
     socket?: boolean;
-    onPresenceUpdate?: (presence: LanyardData) => void;
+    onPresenceUpdate?: (presence: LanyardData | Record<string, LanyardData>) => void;
 }
 
 export interface LanyardResponse {

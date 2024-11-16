@@ -8,7 +8,7 @@ onMounted(() => {
     useLanyard({
         userId: '505432621086670872',
         socket: true,
-        onPresenceUpdate: (presence: LanyardData) => data.value = presence,
+        onPresenceUpdate: presence => data.value = presence as LanyardData,
     });
 });
 
