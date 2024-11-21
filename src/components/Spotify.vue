@@ -26,19 +26,17 @@ function getProgress() {
             Listening to Spotify
         </template>
         <div class="flex flex-row gap-x-4">
-            <Tooltip :text="data.spotify?.album">
-                <img :src="data?.spotify?.album_art_url" alt="Album Art" class="rounded-lg h-24 w-24">
-            </Tooltip>
+            <img v-tooltip.top="data.spotify?.album" :src="data?.spotify?.album_art_url" alt="Album Art" class="rounded-lg h-24 w-24">
             <div class="flex flex-col items-start justify-center gap-2 min-w-0">
                 <a
                     :href="'https://open.spotify.com/track/' + data?.spotify?.track_id"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    class="font-bold text-lg truncate w-full text-text hover:text-green-400 hover:underline transition-colors cursor-pointer"
+                    class="font-bold text-lg truncate w-full hover:text-green-400 hover:underline transition-colors cursor-pointer"
                 >
                     {{ data?.spotify?.song }}
                 </a>
-                <p class="truncate w-full text-subtext1">
+                <p class="truncate w-full">
                     {{ data?.spotify?.artist }}
                 </p>
             </div>
@@ -46,7 +44,7 @@ function getProgress() {
         <div class="flex flex-row items-center gap-x-2">
             <div class="w-full bg-subtext1 h-1 rounded-full">
                 <div
-                    class="bg-mauve h-1 rounded-full"
+                    class="bg-violet-300 h-1 rounded-full"
                     :style="{ width: getProgress() + '%' }"
                 />
             </div>
