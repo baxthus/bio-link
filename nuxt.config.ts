@@ -8,6 +8,25 @@ export default defineNuxtConfig({
     app: {
         head: {
             title: 'baxthus',
+            charset: 'utf-8',
+            viewport: 'width=device-width, initial-scale=1',
+            meta: [
+                { name: 'description', content: 'BREATHE SMOKE WHERE THE AIR IS FRESH' },
+                { name: 'author', content: 'baxthus' },
+                // Open Graph
+                { property: 'og:type', content: 'website' },
+                { property: 'og:url', content: 'https://baxt.fun' },
+                { property: 'og:title', content: 'baxthus' },
+                { property: 'og:description', content: 'BREATHE SMOKE WHERE THE AIR IS FRESH' },
+                { property: 'og:image', content: '/favicon.jpg' },
+                // Twitter / X
+                { name: 'twitter:card', content: 'summary_large_image' },
+                { name: 'twitter:site', content: '@baxthus' },
+                { name: 'twitter:title', content: 'baxthus' },
+                { name: 'twitter:description', content: 'BREATHE SMOKE WHERE THE AIR IS FRESH' },
+                { name: 'twitter:image', content: '/favicon.jpg' },
+                { name: 'twitter:creator', content: '@baxthus' },
+            ],
             link: [{
                 rel: 'icon',
                 type: 'image/jpeg',
