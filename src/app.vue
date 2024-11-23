@@ -1,18 +1,27 @@
 <script setup lang="ts">
-const fullTitle = 'baxthus';
-let title = '';
-let titleIndex = 1;
+const title = {
+    running: true,
+    full: 'baxthus',
+    current: '',
+    index: 1,
+};
 
 onMounted(() => {
     setInterval(() => {
-        if (titleIndex > fullTitle.length) {
-            titleIndex = 1;
+        if (!title.running) {
+            title.index = 1;
+            useHead({ title: title.full });
+            return;
         }
+        if (title.index > title.full.length) title.index = 1;
 
-        title = fullTitle.slice(0, titleIndex);
-        useHead({ title: title });
-        titleIndex++;
+        title.current = title.full.slice(0, title.index);
+        useHead({ title: title.current });
+        title.index++;
     }, 500);
+
+    addEventListener('focus', () => title.running = true);
+    addEventListener('blur', () => title.running = false);
 });
 </script>
 
