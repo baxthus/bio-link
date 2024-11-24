@@ -52,8 +52,8 @@ export default defineNuxtConfig({
     fonts: {
         families: [
             {
-                name: 'Inter',
-                provider: 'bunny',
+                name: 'JetBrains Mono',
+                provider: 'google',
                 global: true,
             },
         ],

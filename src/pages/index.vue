@@ -58,8 +58,8 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
                 {{ data?.discord_status ?? 'offline' }}
             </div>
         </div>
-        <h1 class="font-bold text-3xl">
-            バクサス
+        <h1 class="font-bold text-4xl">
+            baxthus
         </h1>
         <Button
             as="a"
@@ -68,6 +68,7 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
             rel="noopener noreferrer nofollow"
             :label="location"
             severity="secondary"
+            size="small"
             rounded
         >
             <template #icon>
