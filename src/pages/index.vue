@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconBrandDiscord, IconBrandGithub, IconBrandLastfm, IconBrandSteam, IconBrandX, IconMail, IconMapPin, type Icon } from '@tabler/icons-vue';
+import { IconBrandDiscord, IconBrandGithub, IconBrandLastfm, IconBrandSteam, IconBrandX, IconKey, IconMail, IconMapPin, type Icon } from '@tabler/icons-vue';
 import type { LanyardData } from '~/types/lanyard';
 
 const data = ref<LanyardData>();
@@ -26,6 +26,7 @@ const links = ref<Array<{ title: string; content: string; icon: Icon; copy?: boo
     { title: 'Steam', content: 'https://steamcommunity.com/id/baxthus', icon: IconBrandSteam },
     { title: 'Discord', content: 'https://discord.com/users/505432621086670872', icon: IconBrandDiscord },
     { title: 'Last.fm', content: 'https://www.last.fm/user/baxthus', icon: IconBrandLastfm },
+    { title: 'PGP Keys', content: 'https://keybase.io/baxthus/pgp_keys.asc', icon: IconKey },
 ]);
 
 function copyToClipboard(text: string) {
