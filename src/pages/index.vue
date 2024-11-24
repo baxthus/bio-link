@@ -90,7 +90,6 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
                 :href="link.copy ? undefined : link.content"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                :title="link.title"
                 severity="contrast"
                 variant="text"
                 rounded

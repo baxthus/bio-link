@@ -26,7 +26,15 @@ function getProgress() {
             Listening to Spotify
         </template>
         <div class="flex flex-row gap-x-4">
-            <img v-tooltip.top="data.spotify?.album" :src="data?.spotify?.album_art_url" alt="Album Art" class="rounded-lg h-24 w-24">
+            <img
+                v-tooltip.top="{
+                    value: data?.spotify?.album,
+                    autoHide: false,
+                }"
+                :src="data?.spotify?.album_art_url"
+                alt="Album Art"
+                class="rounded-lg h-24 w-24"
+            >
             <div class="flex flex-col items-start justify-center gap-2 min-w-0">
                 <a
                     :href="'https://open.spotify.com/track/' + data?.spotify?.track_id"
