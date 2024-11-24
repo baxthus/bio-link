@@ -66,14 +66,12 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
             :href="locationUrl"
             target="_blank"
             rel="noopener noreferrer nofollow"
-            :label="location"
             severity="secondary"
             size="small"
             rounded
         >
-            <template #icon>
-                <IconMapPin />
-            </template>
+            <IconMapPin />
+            <span class="pt-0.5">{{ location }}</span>
         </Button>
         <div class="w-full ring-0 block">
             <p class="break-words whitespace-pre-line text-center">
@@ -84,6 +82,10 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
             <Button
                 v-for="link in links"
                 :key="link.title"
+                v-tooltip.bottom="{
+                    value: link.title,
+                    showDelay: 300,
+                }"
                 :as="link.copy ? 'button' : 'a'"
                 :href="link.copy ? undefined : link.content"
                 target="_blank"
