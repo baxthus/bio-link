@@ -131,7 +131,7 @@ const stack = ref([
                         target="_blank"
                         rel="noopener noreferrer nofollow"
                     >
-                        <img :src="item.icon.default" class="w-16 h-16">
+                        <img :src="item.icon.default" class="w-16 h-16 drop-shadow-lg">
                     </a>
                 </div>
             </div>
