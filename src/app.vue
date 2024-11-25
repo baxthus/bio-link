@@ -1,7 +1,8 @@
 <template>
-    <div class="sm:h-screen pt-4 sm:pt-0 flex flex-col items-center justify-center">
+    <div class="p-4 flex flex-col items-center">
         <NuxtPage />
     </div>
+    <Footer />
 
     <Toast position="bottom-right" />
 </template>
