@@ -51,7 +51,7 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
                 <img src="/avatar.jpg" alt="Avatar" class="rounded-full size-32">
                 <div
                     v-if="data?.discord_status && data?.discord_status !== 'offline'"
-                    class="absolute bottom-0 right-0 text-white text-xs font-bold rounded-full px-2 py-1 border-4 border-neutral-900"
+                    class="absolute bottom-0 right-0 text-white text-xs font-bold rounded-full px-2 py-1 border-4 border-primary-contrast"
                     :class="{
                         'bg-green-500': data?.discord_status === 'online',
                         'bg-yellow-500': data?.discord_status === 'idle',
