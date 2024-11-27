@@ -21,7 +21,7 @@ Full-Stack Developer (in my dreams)
 `);
 
 const links = ref<Array<{ title: string; content: string; icon: Icon; copy?: boolean }>>([
-    { title: 'Email', content: 'dev@baxt.fun', icon: IconMail, copy: true },
+    { title: 'Email', content: 'carbon@baxt.fun', icon: IconMail, copy: true },
     { title: 'X', content: 'https://x.com/baxthus', icon: IconBrandX },
     { title: 'Github', content: 'https://github.com/baxthus', icon: IconBrandGithub },
     { title: 'Steam', content: 'https://steamcommunity.com/id/baxthus', icon: IconBrandSteam },
