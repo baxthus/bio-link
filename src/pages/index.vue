@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconBrandDiscord, IconBrandGithub, IconBrandLastfm, IconBrandSteam, IconBrandX, IconKey, IconMail, IconMapPin, type Icon } from '@tabler/icons-vue';
+import { IconBrandDiscord, IconBrandGithub, IconBrandLastfm, IconBrandSteam, IconBrandX, IconKey, IconMail, IconMapPin, IconMoneybag, type Icon } from '@tabler/icons-vue';
 import TechStack from '~/components/TechStack.vue';
 import type { LanyardData } from '~/types/lanyard';
 
@@ -20,7 +20,7 @@ BREATHE SMOKE WHERE THE AIR IS FRESH
 Full-Stack Developer (in my dreams)
 `);
 
-const links = ref<Array<{ title: string; content: string; icon: Icon; copy?: boolean }>>([
+const links = ref<Array<{ title: string; icon: Icon; content?: string; copy?: boolean; action?: () => void }>>([
     { title: 'Email', content: 'carbon@baxt.fun', icon: IconMail, copy: true },
     { title: 'X', content: 'https://x.com/baxthus', icon: IconBrandX },
     { title: 'Github', content: 'https://github.com/baxthus', icon: IconBrandGithub },
@@ -28,20 +28,13 @@ const links = ref<Array<{ title: string; content: string; icon: Icon; copy?: boo
     { title: 'Discord', content: 'https://discord.com/users/505432621086670872', icon: IconBrandDiscord },
     { title: 'Last.fm', content: 'https://www.last.fm/user/baxthus', icon: IconBrandLastfm },
     { title: 'PGP Keys', content: 'https://keybase.io/baxthus/pgp_keys.asc', icon: IconKey },
+    { title: 'Donate', icon: IconMoneybag, action: () => donationVisible.value = true },
 ]);
-
-function copyToClipboard(text: string) {
-    navigator.clipboard.writeText(text);
-    toast.add({
-        summary: 'Copied to clipboard',
-        detail: 'It\'s in your clipboard now!',
-        severity: 'success',
-        life: 2000,
-    });
-}
 
 const location = computed(() => data.value?.kv?.location ?? 'Earth');
 const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?api=1&query=${location.value}`).href);
+
+const donationVisible = ref(false);
 </script>
 
 <template>
@@ -96,7 +89,10 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
                     severity="contrast"
                     variant="text"
                     rounded
-                    @click="link.copy ? copyToClipboard(link.content) : undefined"
+                    @click="{
+                        if (link.action) link.action();
+                        if (link.copy) copyToClipboard(toast, link.content ?? '');
+                    }"
                 >
                     <template #icon>
                         <component :is="link.icon" class="w-8 h-auto" />
@@ -108,4 +104,5 @@ const locationUrl = computed(() => new URL(`https://www.google.com/maps/search/?
         </div>
         <TechStack />
     </div>
+    <Donation v-model:visible="donationVisible" />
 </template>
