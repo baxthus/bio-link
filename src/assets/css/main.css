@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 * {
-    @apply font-custom;
+    @apply font-custom antialiased;
 }
