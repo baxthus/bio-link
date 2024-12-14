@@ -29,5 +29,5 @@ const f15 = `
 `;
 
 export default defineNuxtPlugin(() => {
-    console.log(f15);
+  console.log(f15);
 });
